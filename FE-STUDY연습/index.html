@@ -35,6 +35,7 @@
       const ul = document.createElement("ul");
       const div = document.querySelector("#todo-list");
       div.appendChild(ul);
+
       function TodoList(data) {
         if (this === window) {
           throw new Error(`new 키워드를 붙이고 함수를 실행해주세요`);
@@ -52,6 +53,7 @@
             return (li.innerHTML = `${item.text}`);
           });
         };
+
         function checkData(data) {
           if (this === window) {
             throw new Error(`new 키워드를 붙이고 함수를 실행해주세요`);
@@ -65,6 +67,7 @@
           }
         } //이 checkData를 어떻게 적용시킬지 모르겠다..
       }
+
       const todolist = new TodoList(data);
       todolist.render();
       todolist.setState(data2);
