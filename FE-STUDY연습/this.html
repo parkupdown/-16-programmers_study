@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>Mission 1</title>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <div id="todo-list"></div>
+    <script>
+      const day1 = [{ todo: "코딩테스트 풀기" }, { todo: "프로그래머스 연습" }];
+      const day2 = [{ todo: "밥해먹기" }, { todo: "풋살가기" }];
+      const day3 = [{ todo: "산책다녀오기" }, { todo: "자전거 타고오기" }];
+      const day4 = [{ todo: "여행가기" }, { todo: "돌아오기" }];
+      const day5 = [{ todo: "코딩테스트 풀기" }, { todo: "프로그래머스 연습" }];
+      const day6 = [
+        { todo: "코딩테스트 풀기1" },
+        { todo: "프로그래머스 연습1" },
+      ];
+      const day7 = [
+        { todo: "코딩테스트 풀기2" },
+        { todo: "프로그래머스 연습2" },
+      ];
+      const ul = document.createElement("ul");
+      const div = document.querySelector("#todo-list");
+      div.appendChild(ul);
+      function Todolist(data) {
+        this.data = data;
+        this.show = function () {
+          this.data.map(function (item) {
+            const li = document.createElement("li");
+            ul.appendChild(li);
+            return (li.innerHTML = `${item.todo}`);
+          });
+        };
+        this.setState = function (newdata) {
+          this.data = newdata;
+          this.show();
+        };
+        function checkData(data) {
+          if (data === null || undefined) {
+            throw new Error(`data가 ${data}입니다.`);
+          }
+          if (Array.isArray(data) === false) {
+            throw new Error(`array 형태로 할일을 추가하세요`);
+          }
+          if (this === window) {
+            throw new Error(`new를 사용하여 함수를 시행해주세요`);
+          }
+        }
+      }
+      todolist = new Todolist(day1);
+      todolist.show();
+      todolist.setState(day2);
+      todolist.setState(day3);
+      todolist.setState(day4);
+      todolist.setState(day5);
+      todolist.setState(day6);
+      todolist.setState(day7);
+
+      // 이곳에서 코딩을 시작하세요!
+    </script>
+  </body>
+</html>

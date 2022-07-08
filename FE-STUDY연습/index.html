@@ -15,20 +15,60 @@
           text: "JS 복습하기",
         },
       ];
+      var data2 = [
+        {
+          text: "풋살가기",
+        },
+        {
+          text: "밥먹기",
+        },
+      ];
+      var data3 = [
+        {
+          text: "공부하기",
+        },
+        {
+          text: "쉬는시간갖기",
+        },
+      ];
       // 이곳에서 코딩을 시작하세요!
+      const ul = document.createElement("ul");
+      const div = document.querySelector("#todo-list");
+      div.appendChild(ul);
       function TodoList(data) {
-        const list = document.querySelector("#todo-list");
+        if (this === window) {
+          throw new Error(`new 키워드를 붙이고 함수를 실행해주세요`);
+        }
         this.data = data;
-        this.render = function () {
-          for (i = 0; i < this.data.length; i++) {
-            const creatlist = document.createElement("li");
-            creatlist.innerHTML = `${this.data[i].text}`;
-            list.appendChild(creatlist);
-          }
+        this.setState = function (newdata) {
+          this.data = newdata; //setState()에서의 데이터가 newdata가 됨
+          this.render(); //그리고 setState를 render함 **여기서 this는 누구지?
+          //여기서 this는 todolist 이다.
         };
+        this.render = function () {
+          this.data.map(function (item) {
+            const li = document.createElement("li");
+            ul.appendChild(li);
+            return (li.innerHTML = `${item.text}`);
+          });
+        };
+        function checkData(data) {
+          if (this === window) {
+            throw new Error(`new 키워드를 붙이고 함수를 실행해주세요`);
+          }
+          if (Array.isArray(data) === false) {
+            throw new Error(`배열의 형태로 data를 입력하세요`);
+            //throw new Error는 오류의 사용자지정이 가능하다.
+          }
+          if (data === null || data == undefined) {
+            throw new Error(`data가 ${data} 입니다`);
+          }
+        } //이 checkData를 어떻게 적용시킬지 모르겠다..
       }
-      todolist = new TodoList(data);
+      const todolist = new TodoList(data);
       todolist.render();
+      todolist.setState(data2);
+      todolist.setState(data3);
     </script>
   </body>
 </html>
