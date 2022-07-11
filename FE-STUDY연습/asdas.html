@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Mission 1</title>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <div id="todo-list"></div>
+    <script>
+      const data = [
+        {
+          text: "JS 공부하기",
+        },
+        {
+          text: "JS 복습하기",
+        },
+      ];
+      const data2 = [
+        {
+          text: "풋살하기",
+        },
+        {
+          text: "밥먹기",
+        },
+      ];
+      const data3 = [
+        {
+          text: "잘쉬기",
+        },
+        {
+          text: "잘자기",
+        },
+      ];
+      // 이곳에서 코딩을 시작하세요!
+      const div = document.querySelector("#todo-list");
+      const ul = document.createElement("ul");
+      div.appendChild(ul);
+
+      function TodoList(data) {
+        this.data = data;
+        if (this === window) {
+          throw new Error(`new 키워드를 붙이고 함수를 실행시켜주세요`);
+        } //** new키워드를 안붙이고 함수실행시 에러발생하기
+        checkData(data); //**올바른 파라메터가 넘어오지 않을경우 에러발생시키기
+
+        this.setState = function (newdata) {
+          this.data = newdata;
+          if (this === window) {
+            throw new Error(`new 키워드를 붙이고 함수를 실행시켜주세요`);
+          }
+          checkData(newdata);
+          this.render();
+        };
+
+        this.render = function () {
+          this.data.map(function (item) {
+            const li = document.createElement("li");
+            ul.appendChild(li);
+            return (li.innerHTML = `${item.text}`);
+          });
+        };
+      }
+
+      function checkData(data) {
+        if (Array.isArray(data) === false) {
+          throw new Error(`data를 배열의 형태로 작성해주세요`);
+        }
+        if (data === null || data == undefined) {
+          throw new Error(`data가 ${data} 입니다`);
+        }
+      }
+      const todolist = new TodoList(data);
+      todolist.render();
+      todolist.setState(data2);
+      todolist.setState(data3);
+    </script>
+  </body>
+</html>

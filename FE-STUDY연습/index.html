@@ -37,15 +37,17 @@
       div.appendChild(ul);
 
       function TodoList(data) {
-        if (this === window) {
-          throw new Error(`new 키워드를 붙이고 함수를 실행해주세요`);
-        }
         this.data = data;
+        checkData(data);
         this.setState = function (newdata) {
           this.data = newdata; //setState()에서의 데이터가 newdata가 됨
           this.render(); //그리고 setState를 render함 **여기서 this는 누구지?
           //여기서 this는 todolist 이다.
         };
+        if (this === window) {
+          throw new Error(`new 키워드를 붙이고 함수를 실행해주세요`);
+        }
+        checkData(data);
         this.render = function () {
           this.data.map(function (item) {
             const li = document.createElement("li");
@@ -55,9 +57,6 @@
         };
 
         function checkData(data) {
-          if (this === window) {
-            throw new Error(`new 키워드를 붙이고 함수를 실행해주세요`);
-          }
           if (Array.isArray(data) === false) {
             throw new Error(`배열의 형태로 data를 입력하세요`);
             //throw new Error는 오류의 사용자지정이 가능하다.
