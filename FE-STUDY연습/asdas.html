@@ -60,6 +60,15 @@
           });
         };
       }
+      const data = ["soccer", "chale"];
+
+      function AA(data) {
+        this.ball = data[0];
+        this.name = data[1];
+        this.aa = function (item) {
+          this.ball = item;
+        };
+      }
 
       function checkData(data) {
         if (Array.isArray(data) === false) {

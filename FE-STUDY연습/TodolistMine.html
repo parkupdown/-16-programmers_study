@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>Mission 1</title>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <div id="title"></div>
+    <div id="todo-list"></div>
+    <script>
+      const Today = [
+        {
+          text: "코드 리뷰 및 수정",
+          isComplited: true,
+        },
+        {
+          text: "Readme file update",
+          isComplited: true,
+        },
+        {
+          text: "코딩테스트 level2",
+          isComplited: false,
+        },
+        {
+          text: "Todolist 완성",
+          isComplited: false,
+        },
+      ];
+      const Tomorrow = [
+        {
+          text: "예비군",
+          isComplited: false,
+        },
+        {
+          text: "programmers 수업",
+          isComplited: true,
+        },
+      ];
+      const NextMonth = [
+        {
+          text: "JS 수준 높이기",
+          isComplited: true,
+        },
+        {
+          text: "coding text level2 해경",
+          isComplited: false,
+        },
+      ];
+      const ul = document.createElement("ul");
+      const div = document.querySelector("#todo-list");
+      const day = document.querySelector("#title");
+      div.appendChild(ul);
+      function Todolist(data) {
+        //생성자함수 정보를 담게됨
+        this.Today = data;
+        if (!(this instanceof Todolist)) {
+          throw new Error(`new 키워드를 붙여서 함수를 실행해주세요`);
+        }
+        this.render = function () {
+          data.forEach(function (item) {
+            const li = document.createElement("li");
+            ul.appendChild(li);
+            item.isComplited === true
+              ? (li.innerHTML = `<s>${item.text}<s/>`)
+              : (li.innerHTML = `${item.text}`);
+          });
+        };
+
+        this.setState = function (newdata) {
+          data = newdata;
+          this.render();
+        };
+      }
+
+      const todolist = new Todolist(Today);
+      todolist.render();
+      todolist.setState(Tomorrow);
+      todolist.setState(NextMonth);
+      // 이곳에서 코딩을 시작하세요!
+    </script>
+  </body>
+</html>
