@@ -34,7 +34,11 @@ innerHTML은 element의 HTML+XML을 가져온다.
 
 ## forEach vs map
   for Each는 반복문을 대체하는 수단으로 배열 요소마다 한번씩 함수를 호출한다.
+  그리고 return 값이 필요하지 않으며 배열의 요소마다 즉각적인 함수가 적용된다.
+  
   map은 for Each에 비해 더 고차원적인 함수로서 배열 요소마다 *함수 호출한결과를 모아 새로운 배열을 반환한다.*
+  그리고 return 값이 필요하다.
+  
   
 ## throw new Error 
   위 함수는 에러의 사용자 지정이다. if문 이나 어떤 조건을 걸고 그 결과값을 throw new Error하게 되면 함수는 중단되고 경고 메세지를 보낼 수 있다.
