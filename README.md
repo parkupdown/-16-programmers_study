@@ -65,3 +65,23 @@ innerHTML은 element의 HTML+XML을 가져온다.
   if(!(this instanceof Todolist)){
   throw new Error("new키워드와 함께 함수를 실행해주세요")
   ```
+  
+  ## Filter함수
+  ```js
+  const arr= [1,2,3,4]
+ const arr2 =  arr.filter(function(item){
+  return item>2});
+  console.log(arr2)
+  //return => [3,4]
+  ```
+  이런식으로 필터함수는 새로운 배열을 만들어낸다. (true)만을 반환
+  
+  ## 배열을 합치는 방법! [...arr]
+  이 방법은 내용물을 꺼내서 다시 배열에 합치는 방식과 동일하다.
+  ```js
+  const arr=[1,2,3,4]
+  const arr2= [5,6,7,8]
+  const arrs=[...arr,arr2]
+  console.log(arrs) 
+  //return=> [1,2,3,4,5,6,7,8]
+  ```
