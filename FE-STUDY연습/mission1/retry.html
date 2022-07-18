@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Mission 1</title>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <form>
+      <input type="text" placeholder="What To do?" />
+    </form>
+    <div id="todo-list"></div>
+    <script>
+      const data = [];
+      // 이곳에서 코딩을 시작하세요!
+      const div = document.querySelector("#todo-list");
+      const ul = document.createElement("ul");
+      div.appendChild(ul);
+      const input = document.querySelector("input");
+      const form = document.querySelector("form");
+      function Todolist(data) {
+        this.data = data;
+        this.render = function () {
+          form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            data.push({ text: input.value, isComplited: false });
+            input.value = "";
+            console.log(data);
+            const li = document.createElement("li");
+            ul.appendChild(li);
+            data.map(function (item, index) {
+              li.id = `${index}`;
+              li.innerHTML =
+                item.isComplited === true
+                  ? `<s>${item.text}<button>삭제</button></s>`
+                  : `${item.text}<button>삭제</button>`;
+            });
+          });
+        };
+
+        this.render();
+      }
+      //하고싶은건 Data에 넣으면서 바뀐부분만 rendering하는거
+      todolist = new Todolist(data);
+    </script>
+  </body>
+</html>
