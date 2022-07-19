@@ -1,11 +1,10 @@
-const div = document.querySelector("#todo-list");
-const div2 = document.createElement("div");
-div.appendChild(div2);
-const form = document.querySelector("form");
-const input = document.querySelector("input");
-const button = document.querySelector(".BTN");
-
 function Todolist(data) {
+  const div = document.querySelector("#todo-list");
+  const div2 = document.createElement("div");
+  div.appendChild(div2);
+  const form = document.querySelector("form");
+  const input = document.querySelector("input");
+  const button = document.querySelector(".BTN");
   this.data = data;
 
   this.render = function () {
