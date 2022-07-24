@@ -85,3 +85,53 @@ innerHTML은 element의 HTML+XML을 가져온다.
   console.log(arrs) 
   //return=> [1,2,3,4,5,6,7,8]
   ```
+## 컴포넌트화 This를 잘 알고 잘 활용해라!!
+  컴포넌트를 하는데 있어 가장 힘든 점은 서로 독립적인데 정보를 어떻게 주고받냐가 핵심이다
+  모든 컴포넌트를 관리하는 APP에서는 공통적으로 리셋되는 데이터와 rendering되는 대상을 매개변수로 받아 관리를하였다.
+  가장헷갈렸던..힘들게했던부분
+  ```js
+import Todoinput from "./Todoinput.js";
+import Todolist from "./Todolist.js"; //.js붙이지 않으면 404에러가 나옴
+
+export default function App({ $target }) {
+  this.data = [{ text: "wow i can do it", isCompleted: false }];
+  this.setState = function (newdata) {
+    this.data = newdata; // 여기서 this.data가 무엇인지 정확하게 알지못했다.
+  //여기서 this데이터는 공통적인 data로 보면된다.
+    todolist.setState(this.data); //이미 함수 인스턴스로 생선된 todolist의 setState 함수의 매개변수 this.data는
+  // App을 가르킨다. 
+  };
+
+  const todoinput = new Todoinput({
+    $target,
+    onSubmit: (inputvalue) => {//또한 함수를 매개변수로 넘길 때 변수를 앞선 컴포넌트에서 준 후 함수를 실행하는 것이 가능하다. 
+  함수에서 오류가 나면 화살표함수를 활용하면 해결되는 경우가 있다. 이 경우가 그랬다.
+      this.setState([...this.data, { text: inputvalue, isCompleted: false }]); //이때의 this는 APP
+  //this.setState는 App.setState와 같다. 즉 App.setState의 함수에서 각 컴포넌트를 setState하는 함수를 집어넣어 한꺼번에 데이터를 
+  //업데이트 해주는 것이다.
+      console.log(this.data);
+    },
+  });
+
+  const todolist = new Todolist({
+    $target,
+    data: this.data,
+    Todoremove: (LIID) => { //함수를 이렇게 따로 받은 이유는 addeventlistener에서 this를 가르키게되면 todolist를 가리키는게아닌 form을 가르키게 됨으로
+  // 함수를 변수로 넘겨주어 App의 데이터에 업데이트하는 방식을 한것이다.
+      const newdata = this.data.filter(function (item, index) {
+        return index !== LIID * 1;//1을곱해주면 Number형식으로 변한다.
+      });
+      this.setState(newdata);//여기서 this역시 App이다. App.setState는 todolist.state(newdata)를 포함하는 함수이기 때문에 가능하다.
+  //대신 todolist 컴포넌트에 this.setState()에 대한 생성자 함수선언이 필요하다.
+    },
+  });
+}
+  
+  ```
+## 이벤트 버블링 vs 이벤트 위임
+이벤트 버빌링이란? 해당 이벤트가 그 엘리먼트의 조상에게 까지 전달되는 현상!!
+body>div>p 형태일 때 p이 이벤트리스너를 걸어주면 총 3번의 이벤트가 발생할 수 있다.( body와 div에 이벤트 리스너가 걸려있는 경우)
+그렇다면 이러한 버블링을 막기 위해서 사용하는 방법은? # event.stopPropagation()!
+
+이벤트 위임이란? 여러 엘리먼트마다 각각 이번트 핸들러를 할당하지 않고 공통되는 부모에 이벤트 핸들러를 할당하여
+이벤트를 관리하는 방식!!
