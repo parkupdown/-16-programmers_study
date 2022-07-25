@@ -143,3 +143,14 @@ localstorage.setItem("data",JSON.srtingfy(["one","two","three"])
 console.log(JSON.parse(localstorage.getItem("data"))
 //return = ["one","two","three"]
 ```
+
+## map을 활용한 배열 element 값 변경
+```js
+const arr=[{text:"hahaha",isCompleted:false},{text:"hohoho", isCompleted:true]
+arr.map(function(item,index){
+if(item.isCompleted===false){
+return {...item, item.isCompleted===true}}
+}
+return item}
+)//이렇게 이 외의 것들을 item으로 return해주면 배열의 일부분을 바꿀 수 있다.
+```
