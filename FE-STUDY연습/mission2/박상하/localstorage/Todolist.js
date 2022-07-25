@@ -1,4 +1,4 @@
-export default function Todolist({ $target, data }) {
+export default function Todolist({ $target, data, onChange, Listremove }) {
   this.data = data;
 
   const todobox = document.createElement("div");
@@ -10,14 +10,25 @@ export default function Todolist({ $target, data }) {
       .map(function (item, index) {
         return `${
           item.isCompleted
-            ? `<s><li>${item.text}</li></s>`
-            : `<li>${item.text}</li>`
+            ? `<li id=${index}>(완료)${item.text}<button>❌</button></li>`
+            : `<li id=${index}>${item.text}<button>❌</button></li>`
         }`;
       })
       .join("")}
     </ul>`;
   };
   this.render();
+
+  todobox.addEventListener("click", function (event) {
+    if (event.target.tagName === "LI") {
+      const LI = event.target.id;
+      onChange(LI);
+    }
+    if (event.target.tagName === "BUTTON") {
+      const listID = event.target.parentElement.id;
+      Listremove(listID);
+    }
+  });
 
   this.setState = function (newdata) {
     this.data = newdata;
