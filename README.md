@@ -135,3 +135,11 @@ body>div>p 형태일 때 p이 이벤트리스너를 걸어주면 총 3번의 이
 
 이벤트 위임이란? 여러 엘리먼트마다 각각 이번트 핸들러를 할당하지 않고 공통되는 부모에 이벤트 핸들러를 할당하여
 이벤트를 관리하는 방식!!
+
+## localstorage!!
+localstorage를 이용할 때 보통 배열을 많이 사용한다. 배열을 사용할 때 배열에 데이터를 넣는 경우는 Json.stringfy로 넣어주고 사용할 때 즉, 출력할 때는 Json.parse를 해주어야한다.
+```js
+localstorage.setItem("data",JSON.srtingfy(["one","two","three"])
+console.log(JSON.parse(localstorage.getItem("data"))
+//return = ["one","two","three"]
+```
