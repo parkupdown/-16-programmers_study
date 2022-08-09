@@ -4,111 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>비동기</title>
+    <title>즐거운 비동기세상</title>
   </head>
   <body>
-    <h1>asd</h1>
-    <button>하이</button>
-    <script>
-      /*console.log(1 + 1);
-                setTimeout(function () {
-                  console.log(3 + 3);
-                }, 2000); //이런코드들은 비동기코드로 대기실로넘어감!
+    <div id="box"></div>
 
-                console.log(2 + 2);
-                function first(aa) {
-                  console.log("ga");
-                  aa();
-                }
-                first(function () {
-                  console.log(1);
-                  second(function () {
-                    console.log(2);
-                    third(function () {
-                      console.log(3); //이런식으로 콜백지옥이 만들어질 수 있다!
-                    });
-                  });
-                });
-
-                function first(a) {
-                  console.log("yes");
-                  a();
-                }
-                function second(b) {
-                  console.log("you");
-                  b();
-                }
-                function third(c) {
-                  console.log("success");
-                  c();
-                }
-                first(function () {
-                  console.log("kick");
-                  second(function () {
-                    console.log("kick");
-                    third(function () {
-                      console.log("kick");
-                    });
-                  });
-                });
-
-
-                let count = 0;
-                const promise = new Promise((resolve, reject) => {
-                  const result = 5;
-                  resolve(result);
-                });
-                promise
-                  .then((result) => {
-                    console.log(result * 2);
-                    const result2 = result * 3;
-                    return result2; //return값을 변수로 받는것이다.
-                  })
-                  .then((result2) =>
-                    setTimeout(function () {
-                      console.log(result2 * 10);
-                    }, 2000)
-                  );
-                console.log(count);*/
-
-      //img로딩 promise를 활용하여 성공/실패 체크 후 반환
-
-      /*const h2 = document.querySelector("img");
-
-            const promise = new Promise(function (resolve, reject) {
-              const img =
-                "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA2MjBfNjcg%2FMDAxNjU1NjkxMzY0MzMx.A1Y6UHwCvaCb9plZ8emSpw63LnH_jNzkPhfWjmpHIyAg.2tPDh_gVvm-QmGCGpsqL6m2nD04-h4qAZ7sa8M02hn4g.JPEG.honeww%2FSE-d45ef07c-4417-4949-aeec-3277680bfddb.jpg&type=ff332_332";
-              resolve(img);
-            });
-
-            promise.then((img) => (h2.src = img));*/
-
-      /*const promise = new Promise(function (resolve, reject) {
-              const abc = 20 * 20;
-              resolve(abc);
-            });
-            promise
-              .then((abc) => {
-                console.log(abc);
-                return abc * 10;
-              })
-              .then((ddd) =>
-                setTimeout(function () {
-                  console.log(ddd * 20);
-                }, 2000)
-              );*/
-
-      //promise로 button의 성공유무를 판정하여 "성공하셨습니다" 출력
-      /* const button = document.querySelector("button");
-
-            const promise = new Promise((resolve, reject) => {
-              button.addEventListener("click", function () {
-                resolve();
-              });
-            });
-            promise.then(function () {
-              console.log("성공하셨습니다!");
-            });*/
-    </script>
+    <script type="module" src="index.js"></script>
   </body>
 </html>
