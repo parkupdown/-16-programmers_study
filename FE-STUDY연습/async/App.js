@@ -12,7 +12,8 @@ export default function App({ $target }) {
           const result = await fetch(
             `https://api.idiots.band/api/search?keyword=${inputvalue}`
           );
-          const resultjson = await result.json();
+          const resultjson = await result.json(); //promise타입이라
+          //이렇게 연결시켜주어야함
           searchresult.setState(resultjson);
         } catch (e) {
           console.log(e);
